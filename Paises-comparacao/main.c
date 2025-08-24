@@ -1,24 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void LimpaConsole(){
-    #ifdef _WIN32
-        system("cls");
-    #else
-        system("clear");
-    #endif
-}
 
 int main()
 {
     int opcao;
-    LimpaConsole();
 
     while(1) {
         printf("\n==================================\n");
         printf("          MENU PRINCIPAL          \n");
         printf("==================================\n");
-        printf("1 - Item 1\n");
+        printf("1 - Cadastrar Países\n");
         printf("2 - Sobre o Desenvolvedor\n");
         printf("3 - Sair\n");
         printf("==================================\n");
@@ -31,7 +23,7 @@ int main()
             printf("teste switch");
             break;
         case 2:
-            printf("Ainda pensando");
+            printf("Opa me chamo Lucas, sou estudante de Ciência da Computação, e você está executando um programa meu ;)");
             break;
         case 3:
             printf("Saindo...\n");
