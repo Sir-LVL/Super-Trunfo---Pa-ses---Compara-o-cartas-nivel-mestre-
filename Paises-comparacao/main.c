@@ -74,8 +74,6 @@ void Cadastro(){
     pibcapi1 = pib1 / (float) populacao1; // Pib per Capita
     densidade_inver1 = 1 / densidade_popu1; // densidade invertida
 
-    //getchar();//retira o \n do buffer
-
     printf("\nDigite o nome do País 2: \n");
     fgets(pais2, 50, stdin);
     pais2[strcspn(pais2, "\n")] = '\0';
