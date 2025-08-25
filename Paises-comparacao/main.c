@@ -58,39 +58,39 @@ void Cadastro(){
     pais1[strcspn(pais1, "\n")] = '\0';// retira o \n que fica armazenado junto com a variavel, assim corrigindo o erro do código ser 'pulado'
 
     printf("Digite a área de %s: \n", pais1);
-    scanf("%f", &area1);
+    area1 = ler_float();
 
     printf("Digite a população de %s: \n", pais1);
     populacao1 = ler_inteiro();
 
     printf("Digite o PIB de %s: \n", pais1);
-    scanf("%f", &pib1);
+    pib1 = ler_float();
 
     printf("Quantos pontos turisticos tem %s? \n", pais1);
-    scanf("%d", &pontos_turi1);
+    pontos_turi1 = ler_inteiro();
 
     densidade_popu1 = (float) populacao1 / area1; //calculo da densidade populacional
 
     pibcapi1 = pib1 / (float) populacao1; // Pib per Capita
     densidade_inver1 = 1 / densidade_popu1; // densidade invertida
 
-    getchar();//retira o \n do buffer
+    //getchar();//retira o \n do buffer
 
     printf("\nDigite o nome do País 2: \n");
     fgets(pais2, 50, stdin);
     pais2[strcspn(pais2, "\n")] = '\0';
 
     printf("Digite a área de %s: \n", pais2);
-    scanf("%f", &area2);
+    area2 = ler_float();
 
     printf("Digite a população de %s: \n", pais2);
-    scanf("%lu", &populacao2);
+    populacao2 = ler_inteiro();
 
     printf("Digite o PIB de %s: \n", pais2);
-    scanf("%f", &pib2);
+    pib2 = ler_float();
 
     printf("Quantos pontos turisticos tem %s? \n", pais2);
-    scanf("%d", &pontos_turi2);
+    pontos_turi2 = ler_inteiro();
 
     densidade_popu2 = (float) populacao2 / area2;
 
