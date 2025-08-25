@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
     int pontos_turi1, pontos_turi2, pontuacao1, pontuacao2;//Variaveis globais
     float area1, area2, pib1, pib2, pibcapi1,pibcapi2, densidade_popu1,
@@ -8,7 +9,11 @@
     unsigned long int populacao1, populacao2;
     char pais1[50], pais2[50];
 
-void Cadastro(); //Declaração da Função
+void Cadastro(); //Declaração da Função de cadastro
+int validar_inteiro(char str[]); //  declaração de validação de um número inteiro
+int ler_inteiro(); // declaracao da funcao
+int validar_float(char str[]); // funcao de validar o float
+float ler_float(); // funcao de ler o float
 
 int main()
 {
@@ -56,7 +61,7 @@ void Cadastro(){
     scanf("%f", &area1);
 
     printf("Digite a população de %s: \n", pais1);
-    scanf("%lu", &populacao1);
+    populacao1 = ler_inteiro();
 
     printf("Digite o PIB de %s: \n", pais1);
     scanf("%f", &pib1);
@@ -97,4 +102,61 @@ void Cadastro(){
     super2 = area2 + densidade_popu2 + densidade_inver2 + pib2 + pibcapi2 + populacao2 + pontos_turi2;
 
     printf("Deu bom");
+}
+
+int validar_inteiro(char str[]) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (!isdigit(str[i])) {
+            return 0; // contém algo que não é número
+        }
+    }
+    return 1; // só tem números
+}
+
+// Função para ler um inteiro seguro
+int ler_inteiro() {
+    char buffer[100];
+    int numero;
+
+    while (1) {
+        fgets(buffer, sizeof(buffer), stdin);
+        buffer[strcspn(buffer, "\n")] = '\0'; // remove o \n
+
+        if (validar_inteiro(buffer)) {
+            numero = atoi(buffer); // converte string para int
+            return numero;
+        } else {
+            printf("Entrada inválida! Digite apenas números: ");
+        }
+    }
+}
+
+int validar_float(char str[]) {
+    int ponto = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == '.') {
+            if (ponto) return 0; // mais de um ponto → inválido
+            ponto = 1;
+        } else if (!isdigit(str[i])) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+float ler_float() {
+    char buffer[100];
+    float numero;
+
+    while (1) {
+        fgets(buffer, sizeof(buffer), stdin);
+        buffer[strcspn(buffer, "\n")] = '\0';
+
+        if (validar_float(buffer)) {
+            numero = atof(buffer); // converte string para float
+            return numero;
+        } else {
+            printf("Entrada inválida! Digite um número válido: ");
+        }
+    }
 }
