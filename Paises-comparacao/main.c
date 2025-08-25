@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-    int pontos_turi1, pontos_turi2, pontuacao1, pontuacao2;//Variaveis
+    int pontos_turi1, pontos_turi2, pontuacao1, pontuacao2;//Variaveis globais
     float area1, area2, pib1, pib2, pibcapi1,pibcapi2, densidade_popu1,
     densidade_popu2, densidade_inver1, densidade_inver2, super1, super2;
     unsigned long int populacao1, populacao2;
