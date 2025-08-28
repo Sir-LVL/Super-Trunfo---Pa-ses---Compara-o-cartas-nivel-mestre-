@@ -16,7 +16,7 @@ int validar_float(char str[]); // funcao de validar o float
 float ler_float(); // funcao de ler o float
 
 int main()
-{
+{ //teste
     int opcao;
 
     while(1) {
