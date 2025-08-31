@@ -14,11 +14,14 @@ int validar_inteiro(char str[]); //  declaração de validação de um número i
 int ler_inteiro(); // declaracao da funcao
 int validar_float(char str[]); // funcao de validar o float
 float ler_float(); // funcao de ler o float
-void MenuComparacao();
+void MenuComparacao(); // menu de comparacao
+int CompararTodos();
 
 int main()
 { //teste
     int opcao;
+    pontuacao1 = 0;// pontuacao dos paises
+    pontuacao2 = 0;
 
     while(1) {
         printf("\n==================================\n");//Menu Principal
@@ -166,9 +169,9 @@ void MenuComparacao() {
     while (1) {
         printf("\n==================================\n");
         printf("         %s VS %s      \n", pais1, pais2);
-        printf("==================================\n");
-        printf("1 - Mostrar PIB per capita dos países\n");
-        printf("2 - Mostrar densidade populacional dos países\n");
+        printf("====================================\n");
+        printf("1 - Comparar todos os Atributos\n");
+        printf("2 - Comparar apenas 1 atributo\n");
         printf("3 - Mostrar Super Poder de cada país\n");
         printf("4 - Voltar ao menu principal\n");
         printf("==================================\n");
@@ -177,9 +180,9 @@ void MenuComparacao() {
 
         switch (opcao) {
         case 1:
-            printf("\nPIB per Capita de %s: %.2f\n", pais1, pibcapi1);
-            printf("PIB per Capita de %s: %.2f\n", pais2, pibcapi2);
-            break;
+        CompararTodos();
+        MenuComparacao();
+        break;
 
         case 2:
             printf("\nDensidade Populacional de %s: %.2f hab/km²\n", pais1, densidade_popu1);
@@ -209,3 +212,66 @@ void MenuComparacao() {
     }
 }
 
+int CompararTodos(){
+        if (area1 > area2)  { //condições que observam qual país tem maior atributo
+        ++pontuacao1; //aumenta o valor da pontuação se a condição for verdadeira
+        printf("\nÁrea: %s ganha. %s %d X %d %s\n", pais1, pais1, pontuacao1, pontuacao2, pais2);
+        } else{
+        ++pontuacao2;
+        printf("Área: %s ganha. %s %d X %d %s\n", pais2, pais1, pontuacao1, pontuacao2, pais2);
+        }
+
+        if (populacao1 > populacao2) {
+        ++pontuacao1;
+        printf("População: %s ganha. %s %d X %d %s\n", pais1, pais1, pontuacao1, pontuacao2, pais2);
+        } else{
+        ++pontuacao2;
+        printf("População: %s ganha. %s %d X %d %s\n", pais2, pais1, pontuacao1, pontuacao2, pais2);
+        }
+
+        if (densidade_popu1 < densidade_popu2) {
+        ++pontuacao1;
+        printf("Densindade Populacional: %s ganha. %s %d X %d %s\n", pais1, pais1, pontuacao1, pontuacao2, pais2);
+        } else{
+        ++pontuacao2;
+        printf("Densindade Populacional: %s ganha. %s %d X %d %s\n", pais2, pais1, pontuacao1, pontuacao2, pais2);
+        }
+
+        if (pontos_turi1 > pontos_turi2) {
+        ++pontuacao1;
+        printf("Pontos Turísticos: %s ganha. %s %d X %d %s\n", pais1, pais1, pontuacao1, pontuacao2, pais2);
+        } else{
+        ++pontuacao2;
+        printf("Pontos Turísticos: %s ganha. %s %d X %d %s\n", pais2, pais1, pontuacao1, pontuacao2, pais2);
+        }
+
+        if (pib1 > pib2) {
+        ++pontuacao1;
+        printf("PIB: %s ganha. %s %d X %d %s\n", pais1, pais1, pontuacao1, pontuacao2, pais2);
+        } else{
+        ++pontuacao2;
+        printf("PIB: %s ganha. %s %d X %d %s\n", pais2, pais1, pontuacao1, pontuacao2, pais2);
+        }
+
+        if (pibcapi1 > pibcapi2) {
+        ++pontuacao1;
+        printf("PIB Per Capita: %s ganha. %s %d X %d %s\n", pais1, pais1, pontuacao1, pontuacao2, pais2);
+        } else{
+        ++pontuacao2;
+        printf("PIB Per Capita: %s ganha. %s %d X %d %s\n", pais2, pais1, pontuacao1, pontuacao2, pais2);
+        }
+
+        if (super1 > super2) {
+        ++pontuacao1;
+        printf("Super Poder: %s ganha. %s %d X %d %s\n", pais1, pais1, pontuacao1, pontuacao2, pais2);
+        } else{
+        ++pontuacao2;
+        printf("Super Poder: %s ganha. %s %d X %d %s\n", pais2, pais1, pontuacao1, pontuacao2, pais2);
+        }
+
+        if (pontuacao1 > pontuacao2) { // Diz qual país tem a maior pontuação
+        printf("\nO País Ganhador é %s!\n", pais1);
+        } else {
+        printf("\nO País Ganhador é %s!\n", pais2);
+        }
+}
