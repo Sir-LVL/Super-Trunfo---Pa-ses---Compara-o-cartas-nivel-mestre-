@@ -15,10 +15,11 @@ int ler_inteiro(); // declaracao da funcao
 int validar_float(char str[]); // funcao de validar o float
 float ler_float(); // funcao de ler o float
 void MenuComparacao(); // menu de comparacao
-int CompararTodos();
+int CompararTodos(); //Compara todos os atributos
+void CompararAtributoSolo(); //Compara um atributo, no qual o usuario desejar
 
 int main()
-{ //teste
+{
     int opcao;
     pontuacao1 = 0;// pontuacao dos paises
     pontuacao2 = 0;
@@ -40,14 +41,14 @@ int main()
             Cadastro();
             break;
         case 2: //Opção semelhante o 'sobre mim'
-            printf("Opa me chamo Lucas, sou estudante de Ciência da Computação, e você está executando um programa meu ;)");
+            printf("\nOpa me chamo Lucas, sou estudante de Ciência da Computação, apaixonado por tecnologia e você está executando meu programa;)\n");
             break;
         case 3: // Opção de Saída
             printf("Saindo...\n");
             printf("Aperte Enter para encerrar...");
             return 0;
         default: //Mensagem de erro para caso selecionar uma opção inexistente
-            printf("opção invalida, digite novamente\n");
+            printf("\nOpção invalida, digite novamente\n");
         }
     }
     return 0;
@@ -128,7 +129,7 @@ int ler_inteiro() {
             numero = atoi(buffer); // converte string para int
             return numero;
         } else {
-            printf("Entrada inválida! Digite apenas números: ");
+            printf("\nEntrada inválida! Digite apenas números: ");
         }
     }
 }
@@ -158,7 +159,7 @@ float ler_float() {
             numero = atof(buffer); // converte string para float
             return numero;
         } else {
-            printf("Entrada inválida! Digite um número válido: ");
+            printf("\nEntrada inválida! Digite um número válido: ");
         }
     }
 }
@@ -185,20 +186,19 @@ void MenuComparacao() {
         break;
 
         case 2:
-            printf("\nDensidade Populacional de %s: %.2f hab/km²\n", pais1, densidade_popu1);
-            printf("Densidade Populacional de %s: %.2f hab/km²\n", pais2, densidade_popu2);
-            break;
+        CompararAtributoSolo();
+        break;
 
         case 3:
             printf("\nSuper Poder de %s: %.2f\n", pais1, super1);
             printf("Super Poder de %s: %.2f\n", pais2, super2);
 
             if (super1 > super2) {
-                printf("%s é o país mais forte!\n", pais1);
+                printf("\n%s é o país mais forte!\n", pais1);
             } else if (super2 > super1) {
-                printf("%s é o país mais forte!\n", pais2);
+                printf("\n%s é o país mais forte!\n", pais2);
             } else {
-                printf("Empate técnico entre os dois países!\n");
+                printf("\nEmpate técnico entre os dois países!\n");
             }
             break;
 
@@ -207,7 +207,7 @@ void MenuComparacao() {
             return; //Retorna para o menu principal
 
         default:
-            printf("Opcao invalida, tente novamente.\n");
+            printf("\nOpcao invalida, tente novamente.\n");
         }
     }
 }
@@ -263,10 +263,10 @@ int CompararTodos(){
 
         if (super1 > super2) {
         ++pontuacao1;
-        printf("Super Poder: %s ganha. %s %d X %d %s\n", pais1, pais1, pontuacao1, pontuacao2, pais2);
+        printf("\nSuper Poder: %s ganha. %s %d X %d %s\n", pais1, pais1, pontuacao1, pontuacao2, pais2);
         } else{
         ++pontuacao2;
-        printf("Super Poder: %s ganha. %s %d X %d %s\n", pais2, pais1, pontuacao1, pontuacao2, pais2);
+        printf("\nSuper Poder: %s ganha. %s %d X %d %s\n", pais2, pais1, pontuacao1, pontuacao2, pais2);
         }
 
         if (pontuacao1 > pontuacao2) { // Diz qual país tem a maior pontuação
@@ -274,4 +274,86 @@ int CompararTodos(){
         } else {
         printf("\nO País Ganhador é %s!\n", pais2);
         }
+}
+
+void CompararAtributoSolo(){
+    int opcao;
+
+    while (1) {
+        printf("\n===============================\n");
+        printf("  Escolha o atributo a comparar\n");
+        printf("===============================\n");
+        printf("1 - Área\n");
+        printf("2 - População\n");
+        printf("3 - Densidade Populacional\n");
+        printf("4 - Pontos Turísticos\n");
+        printf("5 - PIB\n");
+        printf("6 - PIB per Capita\n");
+        printf("7 - Voltar ao Menu de Comparação\n");
+        printf("===============================\n");
+        printf("Escolha uma opção: ");
+        opcao = ler_inteiro();
+
+        switch (opcao) {
+        case 1:
+            if (area1 > area2) //cada case é um atributo diferente a ser comparado
+                printf("\nÁrea: %s é maior que %s\n", pais1, pais2);
+            else if (area2 > area1)
+                printf("\nÁrea: %s é maior que %s\n", pais2, pais1);
+            else
+                printf("\nAmbos os países têm a mesma área!\n");
+            break;
+
+        case 2:
+            if (populacao1 > populacao2)
+                printf("nPopulação: %s tem mais habitantes que %s\n", pais1, pais2);
+            else if (populacao2 > populacao1)
+                printf("\nPopulação: %s tem mais habitantes que %s\n", pais2, pais1);
+            else
+                printf("\nAmbos os países têm a mesma população!\n");
+            break;
+
+        case 3:
+            if (densidade_popu1 < densidade_popu2) // menor densidade é melhor
+                printf("\nDensidade Populacional: %s é menos denso que %s\n", pais1, pais2);
+            else if (densidade_popu2 < densidade_popu1)
+                printf("\nDensidade Populacional: %s é menos denso que %s\n", pais2, pais1);
+            else
+                printf("\nAmbos os países têm a mesma densidade populacional!\n");
+            break;
+
+        case 4:
+            if (pontos_turi1 > pontos_turi2)
+                printf("\nPontos Turísticos: %s tem mais que %s\n", pais1, pais2);
+            else if (pontos_turi2 > pontos_turi1)
+                printf("\nPontos Turísticos: %s tem mais que %s\n", pais2, pais1);
+            else
+                printf("\nAmbos têm a mesma quantidade de pontos turísticos!\n");
+            break;
+
+        case 5:
+            if (pib1 > pib2)
+                printf("\nPIB: %s é maior que %s\n", pais1, pais2);
+            else if (pib2 > pib1)
+                printf("\nPIB: %s é maior que %s\n", pais2, pais1);
+            else
+                printf("\nAmbos os países têm o mesmo PIB!\n");
+            break;
+
+        case 6:
+            if (pibcapi1 > pibcapi2)
+                printf("\nPIB per Capita: %s é maior que %s\n", pais1, pais2);
+            else if (pibcapi2 > pibcapi1)
+                printf("\nPIB per Capita: %s é maior que %s\n", pais2, pais1);
+            else
+                printf("\nAmbos os países têm o mesmo PIB per Capita!\n");
+            break;
+
+        case 7:
+            return; // volta para o menu de comparação
+
+        default:
+            printf("\nOpção inválida, tente novamente.\n");
+        }
+    }
 }
