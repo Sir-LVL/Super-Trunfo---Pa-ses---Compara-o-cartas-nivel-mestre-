@@ -14,6 +14,7 @@ int validar_inteiro(char str[]); //  declaração de validação de um número i
 int ler_inteiro(); // declaracao da funcao
 int validar_float(char str[]); // funcao de validar o float
 float ler_float(); // funcao de ler o float
+void MenuComparacao();
 
 int main()
 { //teste
@@ -99,7 +100,7 @@ void Cadastro(){
     super1 = area1 + densidade_popu1 + densidade_inver1 + pib1 + pibcapi1 + populacao1 + pontos_turi1;//calculo do super poder
     super2 = area2 + densidade_popu2 + densidade_inver2 + pib2 + pibcapi2 + populacao2 + pontos_turi2;
 
-    printf("Deu bom");
+    MenuComparacao();
 }
 
 int validar_inteiro(char str[]) {
@@ -158,3 +159,53 @@ float ler_float() {
         }
     }
 }
+
+void MenuComparacao() {
+    int opcao;
+
+    while (1) {
+        printf("\n==================================\n");
+        printf("         %s VS %s      \n", pais1, pais2);
+        printf("==================================\n");
+        printf("1 - Mostrar PIB per capita dos países\n");
+        printf("2 - Mostrar densidade populacional dos países\n");
+        printf("3 - Mostrar Super Poder de cada país\n");
+        printf("4 - Voltar ao menu principal\n");
+        printf("==================================\n");
+        printf("Escolha uma opcao: ");
+        opcao = ler_inteiro();
+
+        switch (opcao) {
+        case 1:
+            printf("\nPIB per Capita de %s: %.2f\n", pais1, pibcapi1);
+            printf("PIB per Capita de %s: %.2f\n", pais2, pibcapi2);
+            break;
+
+        case 2:
+            printf("\nDensidade Populacional de %s: %.2f hab/km²\n", pais1, densidade_popu1);
+            printf("Densidade Populacional de %s: %.2f hab/km²\n", pais2, densidade_popu2);
+            break;
+
+        case 3:
+            printf("\nSuper Poder de %s: %.2f\n", pais1, super1);
+            printf("Super Poder de %s: %.2f\n", pais2, super2);
+
+            if (super1 > super2) {
+                printf("%s é o país mais forte!\n", pais1);
+            } else if (super2 > super1) {
+                printf("%s é o país mais forte!\n", pais2);
+            } else {
+                printf("Empate técnico entre os dois países!\n");
+            }
+            break;
+
+        case 4:
+            main();
+            return; //Retorna para o menu principal
+
+        default:
+            printf("Opcao invalida, tente novamente.\n");
+        }
+    }
+}
+
